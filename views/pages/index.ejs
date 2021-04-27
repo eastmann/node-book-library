@@ -1,0 +1,36 @@
+<%- include('../templates/layout-start.ejs', { title: title }) %>
+
+<a class="btn btn-primary" href="/create">Добавить книгу</a>
+
+<% if (books.length) { %>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Номер</th>
+                <th>Название</th>
+                <th>Описание</th>
+                <th>Управлять</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% books.forEach((book, index) => { %>
+                <tr>
+                    <th><%- index + 1 %></th>
+                    <td><%- book.title %></td>
+                    <td><%- book.description %></td>
+                    <td>
+                        <a class="btn btn-success" href="/<%= book.id %>">Просмотр</a>
+                        <a class="btn btn-primary" href="/update/<%= book.id %>">Изменить</a>
+                        <form class="d-inline" action="/delete/<%= book.id %>" method="POST">
+                            <button class="btn btn-danger">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+<% } else { %>
+    <h3 class="mt-5">Книг пока нет</h3>
+<% } %>
+
+<%- include('../templates/layout-end.ejs') %>

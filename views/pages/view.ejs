@@ -1,0 +1,21 @@
+<%- include('../templates/layout-start.ejs', { title: title }) %>
+
+<div class="row">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title"><%- book.title %></h5>
+                <p class="card-text"><%- book.description %></p>
+                <div class="text-right">
+                    <a class="btn btn-primary" href="/update/<%= book.id %>">Изменить</a>
+                    <form class="d-inline" action="/delete/<%= book.id %>" method="POST">
+                        <button class="btn btn-danger">Удалить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../templates/layout-end.ejs') %>
+
